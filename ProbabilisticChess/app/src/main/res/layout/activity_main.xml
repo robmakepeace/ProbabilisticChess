@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+	   
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content">
+	    <Switch
+	        android:id="@+id/switch1"
+			android:text="@string/switch1" 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textOn="@string/switch1_left" 
+		    android:textOff="@string/switch1_right" 
+		    android:paddingTop="40dp" />		    
+	    
+	    <Switch 
+	        android:layout_below="@id/switch1"
+	        android:id="@+id/switch2"
+	        android:text="@string/switch2"
+		    android:textOn="@string/switch2_left" 
+		    android:textOff="@string/switch2_right" 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+		    android:paddingTop="40dp" />   
+	    <Switch 
+	        android:layout_below="@id/switch2"
+	        android:id="@+id/switch3"
+	        android:text="@string/switch3"
+	        android:checked="true"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+		    android:paddingTop="40dp" />         
+	    <Switch
+	        android:layout_below="@id/switch3" 
+	        android:id="@+id/switch4"
+	        android:text="@string/switch4"
+	        android:checked="true"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+		    android:paddingTop="40dp" />         
+		<Switch
+	        android:layout_below="@id/switch4" 
+	        android:id="@+id/switch5"
+	        android:text="@string/switch5"
+	        android:checked="true"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" 
+		    android:paddingTop="40dp" />           
+	     <Button
+	        android:id="@+id/button_rules"
+	        android:layout_below="@id/switch5"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/button_rules" 
+	        
+	        android:onClick="rules"/>   
+	    <Button
+	        android:id="@+id/button_start"
+	        android:layout_below="@id/switch5"
+	        android:layout_toRightOf="@id/button_rules"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/button_start" 
+	        android:onClick="start"/>
+	    <Button
+	        android:id="@+id/button_ar"
+	        android:layout_below="@id/switch5"
+	        android:layout_toRightOf="@id/button_start"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/button_ar" 
+	        android:onClick="ar"/>
+	</RelativeLayout>
+</ScrollView>
