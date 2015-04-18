@@ -49,27 +49,17 @@
 	        android:checked="true"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content" 
-		    android:paddingTop="40dp" />           
-	     <Button
-	        android:id="@+id/button_rules"
-	        android:layout_below="@id/switch5"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/button_rules" 
-	        
-	        android:onClick="rules"/>   
-	    <Button
-	        android:id="@+id/button_start"
-	        android:layout_below="@id/switch5"
-	        android:layout_toRightOf="@id/button_rules"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/button_start" 
-	        android:onClick="start"/>
+		    android:paddingTop="40dp" />
+        <Button
+            android:id="@+id/button_start"
+            android:layout_below="@id/switch5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_start"
+            android:onClick="start"/>
 	    <Button
 	        android:id="@+id/button_ar"
-	        android:layout_below="@id/switch5"
-	        android:layout_toRightOf="@id/button_start"
+	        android:layout_below="@id/button_start"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="@string/button_ar" 

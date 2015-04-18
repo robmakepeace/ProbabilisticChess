@@ -1,0 +1,32 @@
+<resources>
+    <string name="title_activity_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_probabilistic">Probabilistic</string>
+    <string name="pref_description_probabilistic">Make the greatest game greater with chance
+    </string>
+
+    <string name="pref_title_options">Display Moves</string>
+    <string name="pref_description_options">Highlight potential moves
+    </string>
+
+    <string name="pref_title_threats">Display Moves</string>
+    <string name="pref_description_threats">Highlight potential threats
+    </string>
+
+    <string name="pref_title_gametype">Game Type</string>
+    <string-array name="pref_gametype_listtitles">
+        <item>Computer</item>
+        <item>Local Multiplayer</item>
+        <item>Gloabal Multiplayer</item>
+    </string-array>
+    <string-array name="pref_gametype_listvalues">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+</resources>

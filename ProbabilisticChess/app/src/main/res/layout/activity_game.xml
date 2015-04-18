@@ -6,13 +6,13 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Game" 
+    tools:context=".activity_game"
     android:orientation="vertical">
-    <fragment android:name="com.example.jbstrand.probabilisticchess.ConsoleFragment"
+    <fragment android:name="com.example.jbstrand.probabilisticchess.fragment_console"
               android:id="@+id/console_fragment"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content" />
-    <fragment android:name="com.example.jbstrand.probabilisticchess.BoardFragment"
+    <fragment android:name="com.example.jbstrand.probabilisticchess.fragment_board"
               android:id="@+id/board_fragment"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content" />
