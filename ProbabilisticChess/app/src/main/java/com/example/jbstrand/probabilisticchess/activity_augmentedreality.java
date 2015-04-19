@@ -38,7 +38,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 
-
 // Need the following import to get access to the app resources, since this
 // class is in a sub-package.
 
@@ -71,19 +70,19 @@ public class activity_augmentedreality extends Activity {
 
         // Find the ID of the default camera
         CameraInfo cameraInfo = new CameraInfo();
-            for (int i = 0; i < numberOfCameras; i++) {
-                Camera.getCameraInfo(i, cameraInfo);
-                if (cameraInfo.facing == CameraInfo.CAMERA_FACING_BACK) {
-                    defaultCameraId = i;
-                }
+        for (int i = 0; i < numberOfCameras; i++) {
+            Camera.getCameraInfo(i, cameraInfo);
+            if (cameraInfo.facing == CameraInfo.CAMERA_FACING_BACK) {
+                defaultCameraId = i;
             }
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         boolean qOpened = false;
-        
+
         try {
             releaseCameraAndPreview();
             mCamera = Camera.open();
@@ -92,12 +91,12 @@ public class activity_augmentedreality extends Activity {
             Log.e(getString(R.string.app_name), "failed to open Camera");
             e.printStackTrace();
         }
-        if (qOpened = true) {       
-        	cameraCurrentlyLocked = defaultCameraId;
-        	mPreview.setCamera(mCamera);
-        	
+        if (qOpened = true) {
+            cameraCurrentlyLocked = defaultCameraId;
+            mPreview.setCamera(mCamera);
+
         }
-        
+
 
     }
 
@@ -113,6 +112,7 @@ public class activity_augmentedreality extends Activity {
             mCamera = null;
         }
     }
+
     private void releaseCameraAndPreview() {
         mPreview.setCamera(null);
         if (mCamera != null) {
@@ -120,7 +120,7 @@ public class activity_augmentedreality extends Activity {
             mCamera = null;
         }
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -134,39 +134,39 @@ public class activity_augmentedreality extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-        case R.id.switch_cam:
-            // check for availability of multiple cameras
-            if (numberOfCameras == 1) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(this.getString(R.string.camera_alert))
-                       .setNeutralButton("Close", null);
-                AlertDialog alert = builder.create();
-                alert.show();
+            case R.id.switch_cam:
+                // check for availability of multiple cameras
+                if (numberOfCameras == 1) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage(this.getString(R.string.camera_alert))
+                            .setNeutralButton("Close", null);
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                    return true;
+                }
+
+                // OK, we have multiple cameras.
+                // Release this camera -> cameraCurrentlyLocked
+                if (mCamera != null) {
+                    mCamera.stopPreview();
+                    mPreview.setCamera(null);
+                    mCamera.release();
+                    mCamera = null;
+                }
+
+                // Acquire the next camera and request Preview to reconfigure
+                // parameters.
+                mCamera = Camera
+                        .open((cameraCurrentlyLocked + 1) % numberOfCameras);
+                cameraCurrentlyLocked = (cameraCurrentlyLocked + 1)
+                        % numberOfCameras;
+                mPreview.switchCamera(mCamera);
+
+                // Start the preview
+                mCamera.startPreview();
                 return true;
-            }
-
-            // OK, we have multiple cameras.
-            // Release this camera -> cameraCurrentlyLocked
-            if (mCamera != null) {
-                mCamera.stopPreview();
-                mPreview.setCamera(null);
-                mCamera.release();
-                mCamera = null;
-            }
-
-            // Acquire the next camera and request Preview to reconfigure
-            // parameters.
-            mCamera = Camera
-                    .open((cameraCurrentlyLocked + 1) % numberOfCameras);
-            cameraCurrentlyLocked = (cameraCurrentlyLocked + 1)
-                    % numberOfCameras;
-            mPreview.switchCamera(mCamera);
-
-            // Start the preview
-            mCamera.startPreview();
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }
@@ -188,7 +188,7 @@ class Preview extends ViewGroup implements SurfaceHolder.Callback {
     Camera mCamera;
 
     @SuppressWarnings("deprecation")
-	Preview(Context context) {
+    Preview(Context context) {
         super(context);
 
         mSurfaceView = new SurfaceView(context);
@@ -210,17 +210,17 @@ class Preview extends ViewGroup implements SurfaceHolder.Callback {
     }
 
     public void switchCamera(Camera camera) {
-       setCamera(camera);
-       try {
-           camera.setPreviewDisplay(mHolder);
-       } catch (IOException exception) {
-           Log.e(TAG, "IOException caused by setPreviewDisplay()", exception);
-       }
-       Camera.Parameters parameters = camera.getParameters();
-       parameters.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
-       requestLayout();
+        setCamera(camera);
+        try {
+            camera.setPreviewDisplay(mHolder);
+        } catch (IOException exception) {
+            Log.e(TAG, "IOException caused by setPreviewDisplay()", exception);
+        }
+        Camera.Parameters parameters = camera.getParameters();
+        parameters.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
+        requestLayout();
 
-       camera.setParameters(parameters);
+        camera.setParameters(parameters);
     }
 
     @Override
@@ -321,16 +321,16 @@ class Preview extends ViewGroup implements SurfaceHolder.Callback {
     public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
         // Now that the size is known, set up the camera parameters and begin
         // the preview.
-    	
 
-    	if (mCamera != null) {
-	        Camera.Parameters parameters = mCamera.getParameters();
-	        parameters.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
-	        requestLayout();
-	
-	        mCamera.setParameters(parameters);
-	        mCamera.startPreview();
-    	}
+
+        if (mCamera != null) {
+            Camera.Parameters parameters = mCamera.getParameters();
+            parameters.setPreviewSize(mPreviewSize.width, mPreviewSize.height);
+            requestLayout();
+
+            mCamera.setParameters(parameters);
+            mCamera.startPreview();
+        }
     }
 
 }

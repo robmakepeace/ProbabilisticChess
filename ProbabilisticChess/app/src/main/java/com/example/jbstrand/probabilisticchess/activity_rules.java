@@ -10,24 +10,24 @@ import android.view.View;
 
 public class activity_rules extends ActionBarActivity {
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_rules);
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_rules);
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.activity_rules, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
+        return super.onCreateOptionsMenu(menu);
+    }
 
     /**
      * Event Handling for Individual menu item selected
      * Identify single menu item by it's id
-     * */
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;

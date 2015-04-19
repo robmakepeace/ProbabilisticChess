@@ -14,19 +14,18 @@ import android.widget.TextView;
  * {@link Console.OnFragmentInteractionListener} interface to handle interaction
  * events. Use the {@link Console#newInstance} factory method to create an
  * instance of this fragment.
- * 
  */
 public class fragment_console extends Fragment {
     public interface OnConsoleSelectedListener {
 
-	}
+    }
 
-	final static String ARG_POSITION = "position";
+    final static String ARG_POSITION = "position";
     int mCurrentPosition = -1;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, 
-        Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
         // If activity recreated (such as from screen rotate), restore
         // the previous article selection set by onSaveInstanceState().
@@ -70,5 +69,5 @@ public class fragment_console extends Fragment {
         // Save the current article selection in case we need to recreate the fragment
         outState.putInt(ARG_POSITION, mCurrentPosition);
     }
-    
+
 }

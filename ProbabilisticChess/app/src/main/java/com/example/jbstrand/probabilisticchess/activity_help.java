@@ -26,7 +26,7 @@ public class activity_help extends ActionBarActivity {
     /**
      * Event Handling for Individual menu item selected
      * Identify single menu item by it's id
-     * */
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;

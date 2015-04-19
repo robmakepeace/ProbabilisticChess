@@ -41,7 +41,7 @@
             android:parentActivityName=".activity_main" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.jbstrand.probabilisticchess.activity_main" />
+                android:value="activity_main" />
         </activity>
         <activity
             android:name=".activity_rules"
@@ -49,7 +49,7 @@
             android:parentActivityName=".activity_main" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.jbstrand.probabilisticchess.activity_main" />
+                android:value="activity_main" />
         </activity>
         <activity
             android:name=".activity_game"
@@ -57,14 +57,14 @@
             android:parentActivityName=".activity_main" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.jbstrand.probabilisticchess.activity_main" />
+                android:value="activity_main" />
         </activity>
         <activity
             android:name=".activity_opengles20"
             android:label="@string/title_activity_open_gles20" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.jbstrand.probabilisticchess.activity_main" />
+                android:value="activity_main" />
         </activity>
         <activity
             android:name=".activity_augmentedreality"
@@ -72,7 +72,7 @@
             android:parentActivityName=".activity_main" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.jbstrand.probabilisticchess.activity_main" />
+                android:value="activity_main" />
         </activity>
         <activity
             android:name=".activity_settings"
@@ -80,7 +80,7 @@
             android:parentActivityName=".activity_main" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.jbstrand.probabilisticchess.activity_main" />
+                android:value="activity_main" />
         </activity>
         <activity
             android:name=".activity_about"
@@ -88,7 +88,7 @@
             android:parentActivityName=".activity_main" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.jbstrand.probabilisticchess.activity_main" />
+                android:value="activity_main" />
         </activity>
         <activity
             android:name=".activity_help"
@@ -96,7 +96,7 @@
             android:parentActivityName=".activity_main" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.jbstrand.probabilisticchess.activity_main" />
+                android:value="activity_main" />
         </activity>
     </application>
 

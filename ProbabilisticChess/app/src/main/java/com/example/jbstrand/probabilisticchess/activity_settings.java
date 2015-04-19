@@ -59,10 +59,11 @@ public class activity_settings extends PreferenceActivity {
         menuInflater.inflate(R.menu.activity_settings, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
     /**
      * Event Handling for Individual menu item selected
      * Identify single menu item by it's id
-     * */
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
@@ -98,7 +99,6 @@ public class activity_settings extends PreferenceActivity {
     }
 
 
-
     /**
      * Set up the {@link android.app.ActionBar}, if the API is available.
      */
@@ -132,7 +132,7 @@ public class activity_settings extends PreferenceActivity {
 
         // Add 'general' preferences.
         addPreferencesFromResource(R.xml.pref_game);
-  //      bindPreferenceSummaryToValue(findPreference("gametype_list"));
+        //      bindPreferenceSummaryToValue(findPreference("gametype_list"));
         // Add 'notifications' preferences, and a corresponding header.
         //PreferenceCategory fakeHeader = new PreferenceCategory(this);
         //fakeHeader.setTitle(R.string.pref_header_notifications);

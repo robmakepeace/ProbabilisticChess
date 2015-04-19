@@ -15,32 +15,32 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 
 public class activity_main extends ActionBarActivity {
-	public final static String EXTRA_MESSAGE = "com.example.jbstrand.probabilisticchess.MESSAGE";
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+    public final static String EXTRA_MESSAGE = "com.example.jbstrand.probabilisticchess.MESSAGE";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        Boolean probabilistic = sharedPref.getBoolean("p_probabilistic",true);
+        Boolean probabilistic = sharedPref.getBoolean("p_probabilistic", true);
         com.example.jbstrand.probabilisticchess.backend_chess.GAME_TYPE = probabilistic;
 
-        Boolean options = sharedPref.getBoolean("p_options",true);
-        com.example.jbstrand.probabilisticchess.backend_chess.GAME_HINTS = options;
+        Boolean options = sharedPref.getBoolean("p_options", true);
         com.example.jbstrand.probabilisticchess.backend_chess.GAME_OPTIONS = options;
 
-        Boolean threats = sharedPref.getBoolean("p_threats",true);
+        Boolean threats = sharedPref.getBoolean("p_threats", true);
         com.example.jbstrand.probabilisticchess.backend_chess.GAME_THREATS = threats;
-		Switch switch1 = (Switch) findViewById(R.id.switch1);
-		switch1.setChecked(true);
-		Switch switch2 = (Switch) findViewById(R.id.switch2);
-		switch2.setChecked(true);
-		Switch switch3 = (Switch) findViewById(R.id.switch3);
-		switch3.setChecked(false);
-		Switch switch4 = (Switch) findViewById(R.id.switch4);
-		switch4.setChecked(true);
-		Switch switch5 = (Switch) findViewById(R.id.switch5);
-		switch5.setChecked(false);
+        Switch switch1 = (Switch) findViewById(R.id.switch1);
+        switch1.setChecked(true);
+        Switch switch2 = (Switch) findViewById(R.id.switch2);
+        switch2.setChecked(true);
+        Switch switch3 = (Switch) findViewById(R.id.switch3);
+        switch3.setChecked(false);
+        Switch switch4 = (Switch) findViewById(R.id.switch4);
+        switch4.setChecked(true);
+        Switch switch5 = (Switch) findViewById(R.id.switch5);
+        switch5.setChecked(false);
 
 
 
@@ -65,46 +65,47 @@ public class activity_main extends ActionBarActivity {
 		        }
 		    }
 		});*/
-		switch3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		        Switch switch4 = (Switch) findViewById(R.id.switch4);
-		        Switch switch5 = (Switch) findViewById(R.id.switch5);   
-		        if (isChecked) {
+        switch3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Switch switch4 = (Switch) findViewById(R.id.switch4);
+                Switch switch5 = (Switch) findViewById(R.id.switch5);
+                if (isChecked) {
                     com.example.jbstrand.probabilisticchess.backend_chess.GAME_MODE = com.example.jbstrand.probabilisticchess.backend_chess.ONE_PLAYER;
-		            switch4.setChecked(false);
-		            switch5.setChecked(false);            
-		        } 
-		    }
-		});
+                    switch4.setChecked(false);
+                    switch5.setChecked(false);
+                }
+            }
+        });
 
-		switch4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		        Switch switch3 = (Switch) findViewById(R.id.switch3);
-		        Switch switch5 = (Switch) findViewById(R.id.switch5);   
-		        if (isChecked) {
+        switch4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Switch switch3 = (Switch) findViewById(R.id.switch3);
+                Switch switch5 = (Switch) findViewById(R.id.switch5);
+                if (isChecked) {
                     com.example.jbstrand.probabilisticchess.backend_chess.GAME_MODE = com.example.jbstrand.probabilisticchess.backend_chess.TWO_PLAYER;
-		            switch3.setChecked(false);
-		            switch5.setChecked(false);            
-		        } 
-		    }
-		});
+                    switch3.setChecked(false);
+                    switch5.setChecked(false);
+                }
+            }
+        });
 
-		switch5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-		    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		        Switch switch3 = (Switch) findViewById(R.id.switch3);
-		        Switch switch4 = (Switch) findViewById(R.id.switch4);   
-		        if (isChecked) {
+        switch5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Switch switch3 = (Switch) findViewById(R.id.switch3);
+                Switch switch4 = (Switch) findViewById(R.id.switch4);
+                if (isChecked) {
                     com.example.jbstrand.probabilisticchess.backend_chess.GAME_MODE = com.example.jbstrand.probabilisticchess.backend_chess.CHESS_WITH_FRIENDS;
-		            switch3.setChecked(false);
-		            switch4.setChecked(false);            
-		        }
-		    }
-		});
-	}
+                    switch3.setChecked(false);
+                    switch4.setChecked(false);
+                }
+            }
+        });
+    }
+
     /**
      * Event Handling for Individual menu item selected
      * Identify single menu item by it's id
-     * */
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -113,7 +114,7 @@ public class activity_main extends ActionBarActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-     @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
         switch (item.getItemId()) {
@@ -146,7 +147,10 @@ public class activity_main extends ActionBarActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-    /** Called when the user clicks the Start button */
+
+    /**
+     * Called when the user clicks the Start button
+     */
     public void start(View view) {
         Context context = this;
         Intent intent = new Intent(this, com.example.jbstrand.probabilisticchess.activity_game.class);
@@ -154,15 +158,17 @@ public class activity_main extends ActionBarActivity {
     }
 
 
-	/** Called when the user clicks the Start button */
-	public void ar(View view) {
-		Context context = this;
-		PackageManager packageManager = context.getPackageManager();
-		if(packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA) == true) {
-			Intent intent = new Intent(this, com.example.jbstrand.probabilisticchess.activity_augmentedreality.class);
-			startActivity(intent);	    
-		}
-	}
+    /**
+     * Called when the user clicks the Start button
+     */
+    public void ar(View view) {
+        Context context = this;
+        PackageManager packageManager = context.getPackageManager();
+        if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA) == true) {
+            Intent intent = new Intent(this, com.example.jbstrand.probabilisticchess.activity_augmentedreality.class);
+            startActivity(intent);
+        }
+    }
 
 
 }

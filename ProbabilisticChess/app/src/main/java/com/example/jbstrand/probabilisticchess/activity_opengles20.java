@@ -1,5 +1,3 @@
-
-
 package com.example.jbstrand.probabilisticchess;
 
 import android.app.Activity;
@@ -40,13 +38,14 @@ public class activity_opengles20 extends Activity {
         // this is a good place to re-allocate them.
         mGLView.onResume();
     }
-    
+
 }
 
 class MyGLSurfaceView extends GLSurfaceView {
 
     public final MyGL20Renderer mRenderer;
-    boolean initial = false;
+    public static boolean initial = false;
+
     public MyGLSurfaceView(Context boardFragment) {
         super(boardFragment);
 
@@ -59,12 +58,12 @@ class MyGLSurfaceView extends GLSurfaceView {
 
         // Render the view only when there is a change in the drawing data
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
-        mRenderer.colour = backend_chess.WHITE;
+        mRenderer.colour = backend_pieceColour.White;
         if (backend_chess.GAME_MODE == backend_chess.ONE_PLAYER) {
-        	backend_chessengine.setColour(backend_chess.BLACK);
+            backend_chessengine.setColour(backend_pieceColour.Black);
         }
     }
-	
+
     private final float TOUCH_SCALE_FACTOR = 180.0f / 320;
     private float mPreviousX;
     private float mPreviousY;
@@ -80,53 +79,59 @@ class MyGLSurfaceView extends GLSurfaceView {
         int row;
         int col;
         int temp;
-        
+
         float dx = x - mPreviousX;
         float dy = y - mPreviousY;
-        if (mRenderer.colour == backend_chess.WHITE) {
-            row = (int)( 4 - ((y - getHeight()/2) / (getWidth()/8)));
-            col = (7 - (int)(x / (getWidth()/8)));
-            mRenderer.startX = (col-4)* 0.25f+0.125f;
-        	mRenderer.startY = (row-4)*0.25f+0.125f;
+        if (mRenderer.colour == backend_pieceColour.White) {
+            row = (int) (4 - ((y - getHeight() / 2) / (getWidth() / 8)));
+            col = (7 - (int) (x / (getWidth() / 8)));
+            mRenderer.startX = (col - 4) * 0.25f + 0.125f;
+            mRenderer.startY = (row - 4) * 0.25f + 0.125f;
         } else {
-            row = (int)(4 + ((y - getHeight()/2) / (getWidth()/8)));
-            col = ((int)(x / (getWidth()/8)));
-            mRenderer.startX = (col-4)* 0.25f+0.125f;
-        	mRenderer.startY = (row-4)*0.25f+0.125f;
+            row = (int) (4 + ((y - getHeight() / 2) / (getWidth() / 8)));
+            col = ((int) (x / (getWidth() / 8)));
+            mRenderer.startX = (col - 4) * 0.25f + 0.125f;
+            mRenderer.startY = (row - 4) * 0.25f + 0.125f;
+
         }
-        if (row >= 0 && row < 8 && col >= 0 && col < 8) {
-        	temp = 8*row + col;
+        if (!initial) {
+            mRenderer.start_square = new backend_square(col,row);
         } else {
-        	temp = 0;
+            mRenderer.stop_square = new backend_square(col,row);
         }
-        
         switch (e.getAction()) {
-        
-    		case MotionEvent.ACTION_DOWN:
-    			if ((initial == false || backend_chess.colour(temp/8,temp%8) == mRenderer.colour) &&
-                		mRenderer.squareStart != temp && backend_chess.moveA(mRenderer.colour, temp)) {
-                	
-                	initial = true;
-                	mRenderer.squareStart = temp;
+
+            case MotionEvent.ACTION_DOWN:
+                backend_piece start_piece = activity_game.board.get_Board(mRenderer.start_square);
+                if (start_piece.get_pieceType() != backend_pieceType.None) {
+                    if (!initial && start_piece.get_pieceColour() == mRenderer.colour) {
+                        if(backend_move.moveA(activity_game.board, mRenderer.start_square)) {
+                            initial = true;
+                        }
+                    }
                 }
-    			requestRender();
-    			return true;
-    		case MotionEvent.ACTION_UP:	
-                if (initial == true && mRenderer.squareStart != temp) {
-                	boolean status =backend_chess.moveB(mRenderer.colour, mRenderer.squareStart,temp);
-                	if (status) {
-                		initial = false;
-                		if (backend_chess.GAME_MODE == backend_chess.TWO_PLAYER) {
-                			mRenderer.colour = (mRenderer.colour % 2) + 1;
-                		} else if (backend_chess.GAME_MODE == backend_chess.ONE_PLAYER) {
-                            backend_chessengine.computerMove();
-                		}
-                		
-                	}              
-                }
-                mRenderer.squareStart = -1;
                 requestRender();
-    			return true;
+                return true;
+            case MotionEvent.ACTION_UP:
+                if (initial) {
+                    boolean status = backend_move.moveB(activity_game.board, mRenderer.start_square,mRenderer.stop_square);
+                    if (status) {
+                        if (backend_chess.GAME_MODE == backend_chess.TWO_PLAYER) {
+                            if (mRenderer.colour == backend_pieceColour.White) {
+                                mRenderer.colour = backend_pieceColour.Black;
+                            } else {
+                                mRenderer.colour = backend_pieceColour.White;
+                            }
+                        } else if (backend_chess.GAME_MODE == backend_chess.ONE_PLAYER) {
+                            backend_chessengine.computerMove(activity_game.board);
+                        }
+                    }
+                    initial = false;
+                }
+                mRenderer.startX = 0;
+                mRenderer.startY = 0;
+                requestRender();
+                return true;
             case MotionEvent.ACTION_MOVE:
                 requestRender();
                 return true;

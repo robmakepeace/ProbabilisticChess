@@ -11,22 +11,21 @@ import android.widget.EditText;
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass. Activities that
  * contain this fragment must implement the
- * {@link InputFragment.OnFragmentInteractionListener} interface to handle
- * interaction events. Use the {@link InputFragment#newInstance} factory method
+ * {@link fragment_input.OnFragmentInteractionListener} interface to handle
+ * interaction events. Use the {@link fragment_input#newInstance} factory method
  * to create an instance of this fragment.
- * 
  */
 public class fragment_input extends Fragment {
     public interface OnInputSelectedListener {
 
-	}
+    }
 
-	final static String ARG_POSITION = "position";
+    final static String ARG_POSITION = "position";
     int mCurrentPosition = -1;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, 
-        Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
         // If activity recreated (such as from screen rotate), restore
         // the previous article selection set by onSaveInstanceState().
@@ -59,7 +58,7 @@ public class fragment_input extends Fragment {
 
     public void updateinputView(int position) {
 //        TextView input = (TextView) getActivity().findViewById(R.id.input_frag);
- //       input.setText("MONKEYS!");
+        //       input.setText("MONKEYS!");
         mCurrentPosition = position;
     }
 

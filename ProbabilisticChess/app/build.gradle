@@ -18,7 +18,7 @@ android {
         }
     }
     sourceSets {
-        main.java.srcDirs += 'src/main/java/com/example/jbstrand/probabilisticchess'
+        main.java.srcDirs += 'src/main/java/'
     }
 }
 
